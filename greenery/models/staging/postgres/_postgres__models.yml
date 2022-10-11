@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_promos
+    description: Contains each unique promocode. Source is postgres greenery database.
+  - name: stg_orders
+    description: Contains each unique order. Source is postgres greenery database.
+  - name: stg_events
+    description: Contains each unique event. Source is postgres greenery database.
+  - name: stg_addresses
+    description: Contains each unique address. Source is postgres greenery database.
+  - name: stg_order_items
+    description: Contains each unique item that was ordered. Source is postgres greenery database.
+  - name: stg_products
+    description: Contains each unique product. Source is postgres greenery database.
+  - name: stg_users
+    description: Contains each unique user. Source is postgres greenery database.
+    ## next week, add tests!
+    

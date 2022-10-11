@@ -4,6 +4,7 @@ with promos as (
 )
 
 SELECT promo_id
-    , discount
-    , status as promo_status
+    , discount AS promo_discount
+    , status AS promo_status
 FROM promos
+

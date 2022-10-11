@@ -17,10 +17,17 @@ sources:
 
     tables:
       - name: addresses 
+        description: Contains each unique address. Source is postgres greenery database.
       - name: events 
+        description: Contains each unique event. Source is postgres greenery database.
       - name: order_items 
+        description: Contains each unique item that was ordered. Source is postgres greenery database.
       - name: orders 
+        description: Contains each unique order. Source is postgres greenery database.
       - name: products 
+        description: Contains each unique product. Source is postgres greenery database.
       - name: promos
+        description: Contains each unique promocode. Source is postgres greenery database.
       - name: users 
+        description: Contains each unique user. Source is postgres greenery database.
  

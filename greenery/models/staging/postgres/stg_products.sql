@@ -5,6 +5,6 @@ with products as (
 
 SELECT product_id
     , name as product_name
-    , price
-    , inventory
+    , price AS product_price
+    , inventory AS product_quantity
 FROM products
