@@ -12,7 +12,7 @@ SELECT order_id
     , order_total
     , tracking_id
     , shipping_service
-    , estimated_delivery_at AS est_delivery_at_utc
-    , delivered_at AS delivered_at_utc
+    , est_delivered_at_utc AS est_delivered_at_utc
+    , delivered_at_utc AS delivered_at_utc
     , status AS order_status
 FROM orders
