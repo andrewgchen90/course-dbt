@@ -1,6 +1,6 @@
 
-with promos as (
-    select * from {{ source('postgres', 'promos') }}
+WITH promos as (
+    SELECT * FROM {{ source('postgres', 'promos') }}
 )
 
 SELECT promo_id

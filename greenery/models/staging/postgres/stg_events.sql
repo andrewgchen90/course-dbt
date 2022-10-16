@@ -1,5 +1,5 @@
-with events as (
-    select * from {{ source('postgres', 'events') }}
+WITH events as (
+    SELECT * FROM {{ source('postgres', 'events') }}
 )
 
 SELECT event_id

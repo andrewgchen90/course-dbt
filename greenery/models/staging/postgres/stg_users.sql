@@ -1,6 +1,6 @@
 
-with users as (
-    select * from {{ source('postgres', 'users') }}
+WITH users as (
+    SELECT * FROM {{ source('postgres', 'users') }}
 )
 
 SELECT user_id

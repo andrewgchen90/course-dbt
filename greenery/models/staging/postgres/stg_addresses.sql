@@ -1,10 +1,10 @@
-with addresses as (
-    select * from {{ source('postgres', 'addresses') }}
+WITH addresses as (
+    SELECT * FROM {{ source('postgres', 'addresses') }}
 )
 
-select address_id
+SELECT address_id
     , address
     , zipcode
     , state
     , country
-from addresses
+FROM addresses

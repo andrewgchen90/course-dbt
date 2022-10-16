@@ -1,5 +1,5 @@
-with orders as (
-    select * from {{ source('postgres', 'orders') }}
+WITH orders as (
+    SELECT * FROM {{ source('postgres', 'orders') }}
 )
 
 SELECT order_id
