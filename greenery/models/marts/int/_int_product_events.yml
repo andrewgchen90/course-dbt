@@ -2,9 +2,12 @@ version: 2
 
 models:
   - name: int_product_events
-    description: ""
+    description: "Aggregated page views and events by product"
     columns:
       - name: product_id
+        tests:
+          - not_null
+          - unique                    
       - name: lifetime_page_views
       - name: lifetime_add_to_carts
       - name: daily_page_views

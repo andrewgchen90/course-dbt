@@ -2,11 +2,18 @@ version: 2
 
 models:
   - name: dim_users
-    description: ""
+    description: "All things about a user and their activity purchasing and also online"
     columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique              
       - name: first_name
       - name: last_name
       - name: email
+        tests:
+          - not_null
+          - unique        
       - name: phone_number
       - name: created_at_utc
       - name: lifetime_session_count

@@ -1,12 +1,9 @@
-{{ config(materialized = 'view')}}
-
-with order_items as (
-    select * from {{ref('stg_order_items')}}
+WITH order_items as (
+    SELECT * FROM {{ref('stg_order_items')}}
 )
 
-select
-    order_id
-    , count(distinct order_id) as num_products
-    , sum(quantity) as total_quantity
-from order_items
-group by 1
+SELECT order_id
+    , COUNT(distinct order_id) as num_products
+    , SUM(quantity) as total_quantity
+FROM order_items
+GROUP BY 1

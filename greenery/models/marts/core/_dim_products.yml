@@ -2,9 +2,12 @@ version: 2
 
 models:
   - name: dim_products
-    description: ""
+    description: "All things related to a product and the rolled up order and online events"
     columns:
       - name: product_id
+        tests:
+          - not_null
+          - unique        
       - name: product_name
       - name: product_price
       - name: product_inventory

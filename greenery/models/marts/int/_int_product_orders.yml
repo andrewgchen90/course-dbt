@@ -2,9 +2,12 @@ version: 2
 
 models:
   - name: int_product_orders
-    description: ""
+    description: "Aggregated product order information by product"
     columns:
       - name: product_id
+        tests:
+          - not_null
+          - unique                    
       - name: product_name
       - name: product_price
       - name: num_orders

@@ -2,9 +2,12 @@ version: 2
 
 models:
   - name: int_session_agg
-    description: ""
+    description: "Aggregated sessions data"
     columns:
       - name: session_id
+        tests:
+          - not_null
+          - unique                    
       - name: user_id
       - name: num_page_views
       - name: num_added_to_cart

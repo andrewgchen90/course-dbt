@@ -1,4 +1,3 @@
-{{ config(materialized = 'view')}}
 
 WITH products as (
     SELECT * FROM {{ref('stg_products')}}
@@ -12,7 +11,7 @@ WITH products as (
     SELECT * FROM {{ref('int_product_events')}}
 )
 
-SELECT  p.product_id
+SELECT p.product_id
     , p.product_name
     , p.product_price
     , p.product_inventory

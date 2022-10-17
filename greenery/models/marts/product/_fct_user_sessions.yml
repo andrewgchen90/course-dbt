@@ -2,9 +2,12 @@ version: 2
 
 models:
   - name: fct_user_sessions
-    description: ""
+    description: "Sessions rolled up to a user level"
     columns:
       - name: user_id
+        tests:
+          - not_null
+          - unique                    
       - name: first_name
       - name: last_name
       - name: email

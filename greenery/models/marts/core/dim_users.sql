@@ -1,4 +1,3 @@
-{{ config(materialized = 'table')}}
 
 WITH user_sessions as (
     SELECT * FROM {{ref('fct_user_sessions')}}
@@ -8,7 +7,8 @@ WITH user_sessions as (
     SELECT * FROM {{ref('fct_user_orders')}}
 )
 
-SELECT s.first_name
+SELECT s.user_id
+    , s.first_name
     , s.last_name
     , s.email
     , s.phone_number
