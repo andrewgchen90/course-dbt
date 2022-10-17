@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: int_product_orders
+    description: ""
+    columns:
+      - name: product_id
+      - name: product_name
+      - name: product_price
+      - name: num_orders
+      - name: num_quantity_purchased
+      - name: revenue

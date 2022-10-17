@@ -35,5 +35,6 @@ models:
   greenery:
     # Config indicated by + and applies to all files under models/staging/
     staging:
-      postgres:
-        +materialized: view
+      +materialized: view
+    marts:
+      +materialized: table

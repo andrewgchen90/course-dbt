@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: fct_user_orders
+    description: ""
+    columns:
+      - name: user_id
+      - name: lifetime_order_count
+      - name: lifetime_completed_order_count
+      - name: lifetime_avg_days_between_shipments
+      - name: lifetime_spend_exc_shipping
+      - name: lifetime_shipping_cost
+      - name: lifetime_total_spend
+      - name: lifetime_items_purchased
+      - name: lifetime_average_order_value
+      - name: lifetime_average_items_per_order
+      - name: lifetime_promo_count
+      - name: lifetime_promo_discounts
+      - name: first_order_at
+      - name: second_order_at
+      - name: third_order_at
+      - name: fourth_order_at
+      - name: fifth_order_at
+      - name: last_order_at
+      - name: days_since_last_order
+      - name: lifetime_total_spend_ranking
+      - name: lifetime_orders_ranking
+      - name: lifetime_total_quantity_ranking
+      - name: lifetime_average_order_value_ranking
+      - name: lifetime_days_as_customer
+      - name: lifetime_days_active
+      - name: lifetime_weeks_active
+      - name: lifetime_months_active

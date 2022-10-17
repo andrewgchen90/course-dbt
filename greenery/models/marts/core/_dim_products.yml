@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: ""
+    columns:
+      - name: product_id
+      - name: product_name
+      - name: product_price
+      - name: product_inventory
+      - name: num_orders
+      - name: num_quantity_purchased
+      - name: revenue
+      - name: lifetime_page_views
+      - name: lifetime_add_to_carts
+      - name: daily_page_views
+      - name: daily_add_to_carts

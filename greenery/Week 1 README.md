@@ -1,6 +1,6 @@
 
 [Link to Query in Snowflake](https://app.snowflake.com/us-east-1/ryb00700/w5C7uCxDb8Ng#query)
-## Andrew Chen - Co-Rise
+## Andrew Chen - Co-Rise Week 1
 
 #### How many users do we have?
 - 130

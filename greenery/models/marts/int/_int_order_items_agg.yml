@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: int_order_items_agg
+    description: ""
+    columns:
+      - name: order_id
+      - name: num_products
+      - name: total_quantity

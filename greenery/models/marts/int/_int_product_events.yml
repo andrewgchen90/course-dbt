@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: int_product_events
+    description: ""
+    columns:
+      - name: product_id
+      - name: lifetime_page_views
+      - name: lifetime_add_to_carts
+      - name: daily_page_views
+      - name: daily_add_to_carts

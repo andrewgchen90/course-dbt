@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: int_session_agg
+    description: ""
+    columns:
+      - name: session_id
+      - name: user_id
+      - name: num_page_views
+      - name: num_added_to_cart
+      - name: num_checkouts
+      - name: num_package_shipped
+      - name: num_events
+      - name: num_orders
+      - name: num_urls
+      - name: session_start_time
+      - name: session_end_time
+      - name: total_session_time_minutes

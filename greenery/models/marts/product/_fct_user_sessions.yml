@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: fct_user_sessions
+    description: ""
+    columns:
+      - name: user_id
+      - name: first_name
+      - name: last_name
+      - name: email
+      - name: phone_number
+      - name: created_at_utc
+      - name: lifetime_session_count
+      - name: avg_session_time_minutes
+      - name: lifetime_page_views
+      - name: lifetime_added_to_cart
+      - name: lifetime_checkouts
+      - name: lifetime_packages_shipped
+      - name: lifetime_sessions_with_add_to_cart
+      - name: lifetime_sessions_with_check_out
+      - name: pct_of_sessions_with_item_added_with_checkout
+      - name: pct_of_total_sessions_with_checkout
+      - name: lifetime_days_with_session
