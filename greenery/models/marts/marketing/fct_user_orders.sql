@@ -15,18 +15,23 @@ SELECT user_id
     , ROUND(lifetime_items_purchased / lifetime_order_count,1) as lifetime_average_items_per_order
     , COUNT(promo_id) as lifetime_promo_count
     , SUM(order_discount) as lifetime_promo_discounts
-    , MIN(created_at_utc) as first_order_at  
-    , MAX(CASE WHEN user_order_sequence_number = 2 THEN created_at_utc ELSE NULL END) as second_order_at
-    , MAX(CASE WHEN user_order_sequence_number = 3 THEN created_at_utc ELSE NULL END) as third_order_at
-    , MAX(CASE WHEN user_order_sequence_number = 4 THEN created_at_utc ELSE NULL END) as fourth_order_at
-    , MAX(CASE WHEN user_order_sequence_number = 5 THEN created_at_utc ELSE NULL END) as fifth_order_at
-    , MAX(created_at_utc) as last_order_at
-    , current_date() - date(last_order_at) as days_since_last_order
+    , MIN(created_at_utc) as first_order_created_at  
+    , MAX(CASE WHEN user_order_created_sequence_number = 2 THEN created_at_utc ELSE NULL END) as second_order_created_at
+    , MAX(CASE WHEN user_order_created_sequence_number = 3 THEN created_at_utc ELSE NULL END) as third_order_created_at
+    , MAX(CASE WHEN user_order_created_sequence_number = 4 THEN created_at_utc ELSE NULL END) as fourth_order_created_at
+    , MAX(CASE WHEN user_order_created_sequence_number = 5 THEN created_at_utc ELSE NULL END) as fifth_order_created_at
+    , MIN(delivered_at_utc) as first_order_delivered_at
+    , MAX(CASE WHEN user_order_delivered_sequence_number = 2 THEN created_at_utc ELSE NULL END) as second_order_delivered_at
+    , MAX(CASE WHEN user_order_delivered_sequence_number = 3 THEN created_at_utc ELSE NULL END) as third_order_delivered_at
+    , MAX(CASE WHEN user_order_delivered_sequence_number = 4 THEN created_at_utc ELSE NULL END) as fourth_order_delivered_at
+    , MAX(CASE WHEN user_order_delivered_sequence_number = 5 THEN created_at_utc ELSE NULL END) as fifth_order_delivered_at
+    , MAX(created_at_utc) as last_order_created_at
+    , current_date() - date(last_order_created_at) as days_since_last_order
     , RANK() over (order by lifetime_total_spend desc) as lifetime_total_spend_ranking
     , RANK() over (order by lifetime_order_count desc) as lifetime_orders_ranking
     , RANK() over (order by lifetime_items_purchased desc) as lifetime_total_quantity_ranking
     , RANK() over (order by lifetime_average_order_value desc) as lifetime_average_order_value_ranking
-    , DATE(last_order_at) - date(first_order_at) as lifetime_days_as_customer
+    , DATE(last_order_created_at) - date(first_order_created_at) as lifetime_days_as_customer
     , COUNT(DISTINCT date_trunc('day',created_at_utc)) as lifetime_days_active
     , COUNT(DISTINCT date_trunc('week',created_at_utc)) as lifetime_weeks_active
     , COUNT(DISTINCT date_trunc('month',created_at_utc)) as lifetime_months_active

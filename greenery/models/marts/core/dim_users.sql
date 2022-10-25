@@ -35,12 +35,17 @@ SELECT s.user_id
     , o.lifetime_average_items_per_order
     , o.lifetime_promo_count
     , o.lifetime_promo_discounts
-    , o.first_order_at  
-    , o.second_order_at
-    , o.third_order_at
-    , o.fourth_order_at
-    , o.fifth_order_at
-    , o.last_order_at
+    , o.first_order_created_at  
+    , o.second_order_created_at
+    , o.third_order_created_at
+    , o.fourth_order_created_at
+    , o.fifth_order_created_at
+    , first_order_delivered_at
+    , second_order_delivered_at
+    , third_order_delivered_at
+    , fourth_order_delivered_at
+    , fifth_order_delivered_at
+    , o.last_order_created_at
     , o.days_since_last_order
     , o.lifetime_total_spend_ranking
     , o.lifetime_orders_ranking

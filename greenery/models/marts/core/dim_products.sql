@@ -18,12 +18,15 @@ SELECT p.product_id
     , o.num_orders
     , o.num_quantity_purchased
     , o.revenue
-    , e.lifetime_page_views
-    , e.lifetime_add_to_carts
-    , e.daily_page_views
-    , e.daily_add_to_carts
+    , e.lifetime_page_view
+    , e.lifetime_add_to_cart
+    , e.lifetime_checkout
+    , e.lifetime_package_shipped
+    , e.lifetime_sessions
+    , e.lifetime_days_with_purchase
+    , e.lifetime_distinct_buyers
+    , ROUND(div0(e.lifetime_checkout, e.lifetime_sessions),3) as conversion_rate
 FROM products p
 LEFT JOIN product_events e ON p.product_id = e.product_id
 LEFT JOIN product_orders o ON p.product_id = o.product_id
-
 

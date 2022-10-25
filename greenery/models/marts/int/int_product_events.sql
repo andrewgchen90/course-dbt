@@ -1,20 +1,23 @@
-with events as (
-    SELECT * FROM {{ ref('stg_events') }}
+{%-
+    set event_types = dbt_utils.get_column_values(
+        table = ref('int_order_item_events')
+        , column = 'event_type'
+        , order_by = 'event_type asc'
+    )
+-%}
+
+with order_item_events as (
+    select * from {{ ref('int_order_item_events') }}
 )
-, product_date_events as (
-    SELECT product_id
-        , DATE_TRUNC(day, created_at_utc) AS date
-        , SUM(CASE WHEN event_type = 'page_view' THEN 1 ELSE 0 END) AS page_views
-        , SUM(CASE WHEN event_type = 'add_to_cart' THEN 1 ELSE 0 END) AS add_to_carts
-    FROM events
-    WHERE product_id IS NOT NULL
-    GROUP BY 1,2
-    ORDER BY 1
-)
-SELECT product_id
-    , SUM(page_views) AS lifetime_page_views
-    , SUM(add_to_carts) AS lifetime_add_to_carts
-    , ROUND(AVG(page_views),1) AS daily_page_views
-    , ROUND(AVG(add_to_carts),1) AS daily_add_to_carts
-FROM product_date_events
+
+SELECT product_guid_coalesce as product_id
+    {% for event_type in event_types %}
+    , SUM(CASE WHEN event_type = '{{ event_type }}' THEN 1 ELSE 0 END) as lifetime_{{ event_type }}
+    {% endfor %}
+    , COUNT(DISTINCT session_id) as lifetime_sessions
+    , COUNT(DISTINCT DATE(created_at_utc)) as lifetime_days_with_purchase
+    , COUNT(DISTINCT user_id) as lifetime_distinct_buyers
+FROM order_item_events
+WHERE product_id IS NOT NULL
 GROUP BY 1
+ORDER BY 1

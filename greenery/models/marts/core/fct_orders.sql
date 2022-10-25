@@ -38,7 +38,8 @@ SELECT o.order_id
     , case when o.order_status = 'delivered' 
             then datediff(hour,o.created_at_utc,o.delivered_at_utc)
             end as delivery_time_hours
-    , RANK() OVER(PARTITION BY u.user_id ORDER BY o.created_at_utc) as user_order_sequence_number
+    , RANK() OVER(PARTITION BY u.user_id ORDER BY o.created_at_utc) as user_order_created_sequence_number
+    , RANK() OVER(PARTITION BY u.user_id ORDER BY o.delivered_at_utc) as user_order_delivered_sequence_number
     , date(lead(o.created_at_utc,1) OVER (Partition by u.user_id ORDER BY o.created_at_utc)) as next_shipment_date
     , date(lead(o.created_at_utc,1) OVER (Partition by u.user_id ORDER BY o.created_at_utc)) - date(o.created_at_utc) days_till_next_shipment
 FROM orders o
