@@ -7,14 +7,15 @@ WITH user_sessions as (
     SELECT * FROM {{ref('fct_user_orders')}}
 )
 
-SELECT s.user_id
+SELECT 
+    s.user_id
     , s.first_name
     , s.last_name
     , s.email
     , s.phone_number
     , s.created_at_utc
     , s.lifetime_session_count
-    , s.avg_session_time_minutes
+    , s.avg_session_duration_minutes
     , s.lifetime_page_views
     , s.lifetime_added_to_cart
     , s.lifetime_checkouts

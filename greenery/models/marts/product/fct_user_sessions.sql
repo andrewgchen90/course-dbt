@@ -7,14 +7,15 @@ WITH sessions AS (
   SELECT *
   FROM {{ ref('stg_users') }} 
 )
-SELECT s.user_id
+SELECT 
+  s.user_id
     , u.first_name
     , u.last_name
     , u.email
     , u.phone_number
     , u.created_at_utc
     , COUNT(distinct s.session_id) as lifetime_session_count
-    , AVG(s.total_session_time_minutes) as avg_session_time_minutes
+    , AVG(s.total_session_duration_minutes) as avg_session_duration_minutes
     , SUM(s.num_page_view) as lifetime_page_views
     , SUM(s.num_add_to_cart) as lifetime_added_to_cart
     , SUM(s.num_checkout) as lifetime_checkouts

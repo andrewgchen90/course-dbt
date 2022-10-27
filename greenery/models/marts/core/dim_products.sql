@@ -11,13 +11,16 @@ WITH products as (
     SELECT * FROM {{ref('int_product_events')}}
 )
 
-SELECT p.product_id
+SELECT 
+    p.product_id
     , p.product_name
     , p.product_price
     , p.product_inventory
     , o.num_orders
     , o.num_quantity_purchased
     , o.revenue
+    , o.product_first_purchase_date
+    , o.product_most_recent_purchase_date
     , e.lifetime_page_view
     , e.lifetime_add_to_cart
     , e.lifetime_checkout

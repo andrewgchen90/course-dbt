@@ -3,7 +3,8 @@ WITH fct_orders as (
     SELECT * FROM {{ ref('fct_orders') }}
 )
 
-SELECT user_id
+SELECT 
+    user_id
     , COUNT(order_id) as lifetime_order_count
     , SUM(case when order_status = 'delivered' then 1 else 0 END) as lifetime_completed_order_count
     , ROUND(AVG(DAYS_TILL_NEXT_SHIPMENT),1) as lifetime_avg_days_between_shipments

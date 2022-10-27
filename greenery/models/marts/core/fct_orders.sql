@@ -15,7 +15,8 @@ with orders as (
     SELECT * FROM {{ref('int_order_items_agg')}}
 )
 
-SELECT o.order_id
+SELECT 
+    o.order_id
     , o.user_id
     , o.address_id
     , o.promo_id

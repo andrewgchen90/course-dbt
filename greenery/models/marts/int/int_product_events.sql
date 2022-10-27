@@ -10,7 +10,8 @@ with order_item_events as (
     select * from {{ ref('int_order_item_events') }}
 )
 
-SELECT product_guid_coalesce as product_id
+SELECT 
+    product_guid_coalesce as product_id
     {% for event_type in event_types %}
     , SUM(CASE WHEN event_type = '{{ event_type }}' THEN 1 ELSE 0 END) as lifetime_{{ event_type }}
     {% endfor %}

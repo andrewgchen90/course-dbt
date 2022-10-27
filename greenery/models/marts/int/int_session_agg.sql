@@ -11,30 +11,33 @@ WITH events as (
 )
 
 , sessions as (
-SELECT session_id
-    , user_id
-    {% for event_type in event_types %}
-    , SUM(CASE WHEN event_type = '{{ event_type }}' THEN 1 ELSE 0 END) as num_{{ event_type }}
-    {% endfor %}
-    , COUNT(distinct event_id) as num_events
-    , COUNT(distinct order_id) as num_orders
-    , COUNT(distinct page_url) as num_urls
-    , MIN(created_at_utc) as session_start_time
-    , MAX(created_at_utc) as session_end_time
-    , DATEDIFF(minutes,session_start_time,session_end_time) as total_session_time_minutes
-    , CASE
-            WHEN total_session_time_minutes< 5 then '<5 minutes'
-            WHEN total_session_time_minutes <10 then '5-10 Minutes'
-            WHEN total_session_time_minutes <20 then '10-20 Minutes'
-            WHEN total_session_time_minutes <30 then '20-30 Minutes'
-            WHEN total_session_time_minutes >= 30 then '30 minutes or more'
-            else null
-        end as Session_Duration_Minutes_Tier
-FROM events
-GROUP BY 1,2
+    SELECT 
+        session_id
+        , user_id
+        {% for event_type in event_types %}
+        , SUM(CASE WHEN event_type = '{{ event_type }}' THEN 1 ELSE 0 END) as num_{{ event_type }}
+        {% endfor %}
+        , COUNT(distinct event_id) as num_events
+        , COUNT(distinct order_id) as num_orders
+        , COUNT(distinct page_url) as num_urls
+        , MIN(created_at_utc) as session_start_time
+        , MAX(CASE WHEN event_type != 'package_shipped' THEN created_at_utc ELSE NULL end) session_end_time --package shipping is recorded as an event, leading to unusually
+        , DATEDIFF(minutes,session_start_time,session_end_time) as total_session_duration_minutes
+        , CASE
+                WHEN total_session_duration_minutes< 5 then '<5 minutes'
+                WHEN total_session_duration_minutes <10 then '5-10 Minutes'
+                WHEN total_session_duration_minutes <20 then '10-20 Minutes'
+                WHEN total_session_duration_minutes <30 then '20-30 Minutes'
+                WHEN total_session_duration_minutes >= 30 then '30 minutes or more'
+                else null
+            end as Session_Duration_Minutes_Tier
+        , listagg(distinct product_id, ', ') products_viewed
+    FROM events
+    GROUP BY 1,2
 )
 
-SELECT s.*
+SELECT 
+    s.*
     , o.first_order_created_at 
     , o.last_order_created_at
     , CASE 
