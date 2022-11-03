@@ -19,8 +19,8 @@ final as (
         to_varchar(date_day, 'yyyymmdd') as calendar_id,
         date_day as calendar_date,
         date_part('year', date_day) as calendar_year,
-        date_part('month', date_day) as calender_month,
-        date_part('day', date_day) as calender_day
+        date_part('month', date_day) as calendar_month,
+        date_part('day', date_day) as calendar_day
     from
         date_spine
 )
